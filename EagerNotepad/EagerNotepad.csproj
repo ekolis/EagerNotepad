@@ -9,6 +9,17 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
+    <AvaloniaResource Remove="Assets\Words.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Words.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Words.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.0" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0" />
