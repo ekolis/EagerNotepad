@@ -1,5 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
 namespace EagerNotepad.Views
@@ -17,6 +19,12 @@ namespace EagerNotepad.Views
 		private void InitializeComponent()
 		{
 			AvaloniaXamlLoader.Load(this);
+		}
+
+		public void OnKeyDown(object sender, KeyEventArgs e)
+		{
+			this.FindControl<TextBox>("txt").Text = "FRED IS A BAD DOG";
+
 		}
 	}
 }
