@@ -34,24 +34,32 @@ namespace EagerNotepad.Views
 
 		public void OnKeyUp(object sender, KeyEventArgs e)
 		{
-			char? thisChar = e.Key.ToString()[0];
-			if (lastChar is not null)
+			string thisStr = e.Key.ToString();
+			if (thisStr.Length == 1)
 			{
-				string prefix = $"{lastChar}{thisChar}";
-				if (prefix.Length >= 2)
+				char? thisChar = thisStr[0];
+				if (lastChar is not null)
 				{
-					var word = AutoComplete(prefix);
-					if (word is not null)
+					string prefix = $"{lastChar}{thisChar}";
+					if (prefix.Length >= 2)
 					{
-						var txt = this.FindControl<TextBox>("txt");
-						string suffix = word.Substring(prefix.Length - 1);
-						txt.Text += suffix + " ";
-						txt.CaretIndex += suffix.Length + 1;
-						thisChar = null;
+						var word = AutoComplete(prefix);
+						if (word is not null)
+						{
+							var txt = this.FindControl<TextBox>("txt");
+							string suffix = word.Substring(prefix.Length);
+							txt.Text += suffix + " ";
+							txt.CaretIndex += suffix.Length + 1;
+							thisChar = null;
+						}
 					}
 				}
+				lastChar = thisChar;
 			}
-			lastChar = thisChar;
+			else
+			{
+				lastChar = null;
+			}
 		}
 
 		private char? lastChar;
